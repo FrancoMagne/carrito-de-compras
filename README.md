@@ -7,56 +7,80 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## Descripcion del Proyecto
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Una aplicación web desarrollada para la comprá de distintos articulos que se podrán pagar por medio de Mercado Pago.
+Los mismos podrán ser enviados a domicilio o retirados en el local del vendedor, el envio a domicilio tiene un costo dependiendo del lugar de envio, además de que el cliente podrá ver el estado de envío de sus articulos.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Funcionalidades
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+La aplicación poseé :
+- Home optimizado para la carga de articulos
+- Sistema de autentiﬁcacion con Laravel Jetstream
+- Manejo de Roles con Spatie/Laravel Permission
+- SDK de Mercado Pago
+- Panel de control con AdminLTE
+- Envío de mails con PHPMailer
+- Diseño Responsive implementado con Tailwind CSS y Bootstrap 5
 
-## Learning Laravel
+## Roles
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Cliente
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- Puede ver el estado en el que se encuentra su orden luego de haberla generado
+- Método de envío
+- Modiﬁcar su carrito de compras
+- Agregar varios articulos a su carrito de compras 
 
-## Laravel Sponsors
+### Vendedor
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Tiene un panel de control en el cual podrá realizar las siguientes acciones:
 
-### Premium Partners
+- Crear, editar y eliminar sus articulos
+- Cada vez que el vendedor actualice el estado de una orden, se le notiﬁcá al cliente por medio de un mail esta acción
+- Administrar las ordenes que se encuentren en estado de Pago Recibido, Orden Enviada, Orden Entregada
+- Generar un PDF o Excel con la informacion de sus articulos
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/)**
-- **[OP.GG](https://op.gg)**
+### Administrador
 
-## Contributing
+Tiene un panel de control en el cual podrá realizar las siguientes acciones:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- Agregar o eliminar nuevas categorias para que los vendedores puedan asignarle a sus articulos
+- Crear nuevos usuarios asignandoles un rol, esta acción notiﬁcará por medio de un mail los datos con los que se identiﬁcará en el sistema
+- Habilitar o deshabilitar cuentas de usuarios (vendedores y clientes)
 
-## Code of Conduct
+#### Las crendenciales para poder acceder a las cuentas de cada uno de los roles generados, se encuentran en UserSeeder.php
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Tecnologias
 
-## Security Vulnerabilities
+- Bases de Datos : phpMyAdmin - MySQL
+- Laravel Collective para manejar algunos formularios
+- DataTables
+- Mails : PHPMailer
+- Carrito de Compras : bumbummen99/shoppingcart
+- Excel : Maatwebsite
+- PDF : DomPDF
+- Manejo de Roles con Spatie/Laravel Permission
+- Componentes de Livewire
+- Javascript : Alpine y jQuery
+- CSS : Bootstrap 5 y Tailwind CSS
+- PHP : Laravel 8
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
+## Ejecución
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Antes de ejecutar el proyecto, es necesario tener instalado Node.js y Docker ya que nos serán utiles para la utilizacion de los componentes de livewire y el uso del SDK de Mercado Pago
+
+Tambien necesitamos iniciar las migraciones: 
+
+#### php artisan migrate
+
+Para luego poder rellenarlas con los factories y seeders, con el siguiente comando: 
+
+#### php artisan migrate:fresh --seed
+
+En caso de que quieramos probar la eliminacion de una orden cuando no se realiza el pago, esta funcionalidad esta automatizada (por ahora) con un cron de Laravel, la orden es eliminada luego de 10 minutos en caso de que no se realice el pago, con el siguiente comando activamos el cron.
+
+#### php artisan schedule:work (solo funciona para localhost)
+
+En el archivo .env_example estan algunas de las meta_keys necesarias para poder levantar la BD, hacer uso de las credenciales de Mercado Pago y para el envió de email, dichas meta_keys deben ser completadas por quien haga uso de este sistema.
