@@ -7,14 +7,14 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## Descripcion del Proyecto
+## Descripción del Proyecto
 
 Una aplicación web desarrollada para la comprá de distintos articulos que se podrán pagar por medio de Mercado Pago.
 Los mismos podrán ser enviados a domicilio o retirados en el local del vendedor, el envio a domicilio tiene un costo dependiendo del lugar de envio, además de que el cliente podrá ver el estado de envío de sus articulos.
 
 ## Funcionalidades
 
-La aplicación poseé :
+La aplicación poseé:
 - Home optimizado para la carga de articulos
 - Sistema de autentiﬁcacion con Laravel Jetstream
 - Manejo de Roles con Spatie/Laravel Permission
@@ -34,18 +34,14 @@ La aplicación poseé :
 
 ### Vendedor
 
-Tiene un panel de control en el cual podrá realizar las siguientes acciones:
-
-- Crear, editar y eliminar sus articulos
+- Crea, edita y elimina sus articulos
 - Cada vez que el vendedor actualice el estado de una orden, se le notiﬁcá al cliente por medio de un mail esta acción
 - Administrar las ordenes que se encuentren en estado de Pago Recibido, Orden Enviada, Orden Entregada
 - Generar un PDF o Excel con la informacion de sus articulos
 
 ### Administrador
 
-Tiene un panel de control en el cual podrá realizar las siguientes acciones:
-
-- Agregar o eliminar nuevas categorias para que los vendedores puedan asignarle a sus articulos
+- Agrega o elimina categorias para que los vendedores puedan asignarle a sus articulos
 - Crear nuevos usuarios asignandoles un rol, esta acción notiﬁcará por medio de un mail los datos con los que se identiﬁcará en el sistema
 - Habilitar o deshabilitar cuentas de usuarios (vendedores y clientes)
 
@@ -70,6 +66,8 @@ Tiene un panel de control en el cual podrá realizar las siguientes acciones:
 ## Ejecución
 
 Antes de ejecutar el proyecto, es necesario tener instalado Node.js y Docker ya que nos serán utiles para la utilizacion de los componentes de livewire y el uso del SDK de Mercado Pago
+
+#### npm install && npm run dev
 
 Tambien necesitamos iniciar las migraciones: 
 
