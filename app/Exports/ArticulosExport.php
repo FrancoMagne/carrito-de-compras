@@ -5,12 +5,18 @@ namespace App\Exports;
 use App\Articulo;
 use App\Models\Articulo as ModelsArticulo;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class ArticulosExport implements FromCollection
+class ArticulosExport implements FromCollection, WithHeadings
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
+    public function headings(): array {
+        return [
+            'Nombre Producto',
+            'Cantidad',
+            'Precio Unitario',
+        ];
+    }
+    
     public function collection()
     {
         $articulos = ModelsArticulo::select('name', 'quantity', 'price')
