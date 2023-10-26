@@ -19,11 +19,11 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             //$table->unsignedBigInteger('articulo_id');
-            
+
             $table->foreign('user_id')->references('id')->on('users');
             //$table->foreign('articulo_id')->references('id')->on('articulos');
-            
-            
+
+
             $table->text('contact');
             $table->string('phone');
             $table->text('address')->nullable();
@@ -32,7 +32,8 @@ class CreateOrdersTable extends Migration
             $table->enum('shipping_type', [1, 2]); // 1 - Retira en Local, 2 - Envio Domicilio
             $table->float('shipping_cost');
             $table->float('total');
-            $table->json('content');
+            //$table->json('content')->nullable();
+            $table->text('content')->nullable();
 
             $table->unsignedBigInteger('province_id')->nullable();
             $table->unsignedBigInteger('departament_id')->nullable();

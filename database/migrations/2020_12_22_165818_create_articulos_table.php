@@ -19,7 +19,7 @@ class CreateArticulosTable extends Migration
             $table->unsignedBigInteger('category_id');
             $table->text('name');
             $table->integer('quantity');
-            $table->text('image')->default('');
+            $table->text('image')->nullable();
             $table->decimal('price', 10, 2);
             $table->boolean('enabled')->default(1);
             $table->boolean('visible')->default(0);
